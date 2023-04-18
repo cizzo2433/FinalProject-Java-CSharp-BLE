@@ -15,7 +15,7 @@ public class Test {
         Javonet.activate(Constants.email, Constants.APIkey, JavonetFramework.v40);
         Javonet.addReference(Constants.filePath);
 
-        // Will print message to console when signal is detected
+        // Will print message to console when signal is detected, returns a boolean
         Javonet.getType("Program").invoke("CheckForBlueCharm");
 
 
