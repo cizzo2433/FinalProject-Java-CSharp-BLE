@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="169c84ae-c482-4bf0-8e19-b1763dc4b30a" name="Changes" comment="testing updates" />
+    <list default="true" id="169c84ae-c482-4bf0-8e19-b1763dc4b30a" name="Changes" comment="test">
+      <change afterPath="$PROJECT_DIR$/.idea/csharp/QuickBlueToothLE.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,7 +31,7 @@
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
         <option name="accountId" value="592595de-99de-45c2-9837-7e9c59fbee6b" />
-        <option name="url" value="https://github.com/cizzo2433/FinalProject-Java-CSharp.git" />
+        <option name="url" value="https://github.com/cizzo2433/CIS111B-FinalProject-Java-CSharp.git" />
       </UrlAndAccount>
     </option>
   </component>
@@ -43,6 +47,8 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/izzoc/IdeaProjects/FinalProjectCIS111B/.idea/dll",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
@@ -79,7 +85,21 @@
       <option name="project" value="LOCAL" />
       <updated>1681842815261</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="test">
+      <created>1681843428092</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1681843428092</updated>
+    </task>
+    <task id="LOCAL-00005" summary="test">
+      <created>1681843600123</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1681843600123</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -107,6 +127,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="testing updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing updates" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
 </project>
