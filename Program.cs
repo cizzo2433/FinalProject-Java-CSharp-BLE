@@ -7,6 +7,7 @@ namespace BluetoothLEReceiver
     {
         public static void Main(string[] args)
         {
+
             var watcher = new MyWatcher();
 
             watcher.StartedListening += () =>
@@ -51,7 +52,7 @@ namespace BluetoothLEReceiver
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine($"{devices.Count} devices.....");
 
-                foreach ( var device in devices )
+                foreach (var device in devices)
                 {
                     Console.WriteLine(device);
                 }
@@ -161,6 +162,7 @@ namespace BluetoothLEReceiver
                     }
                 }
             }
+            watcher.StopListening();
             return signal;
         }
     }
