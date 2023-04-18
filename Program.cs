@@ -1,139 +1,167 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Windows.Devices.Bluetooth;
-using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Devices.Enumeration;
-using Windows.Storage.Streams;
 
-namespace QuickBlueToothLE
+namespace BluetoothLEReceiver 
 {
     class Program
     {
-        static DeviceInformation device = null;
-
-        public static string HEART_RATE_SERVICE_ID = "180d";
-
-        static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
-            // Query for extra properties you want returned
-            string[] requestedProperties = { "System.Devices.Aep.DeviceAddress", "System.Devices.Aep.IsConnected" };
+            var watcher = new MyWatcher();
 
-            DeviceWatcher deviceWatcher =
-                        DeviceInformation.CreateWatcher(
-                                BluetoothLEDevice.GetDeviceSelectorFromPairingState(false),
-                                requestedProperties,
-                                DeviceInformationKind.AssociationEndpoint);
+            watcher.StartedListening += () =>
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("Started listening");
+            };
 
-            // Register event handlers before starting the watcher.
-            // Added, Updated and Removed are required to get all nearby devices
-            deviceWatcher.Added += DeviceWatcher_Added;
-            deviceWatcher.Updated += DeviceWatcher_Updated;
-            deviceWatcher.Removed += DeviceWatcher_Removed;
+            watcher.StoppedListening += () =>
+            {
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("Stopped listening");
+            };
 
-            // EnumerationCompleted and Stopped are optional to implement.
-            deviceWatcher.EnumerationCompleted += DeviceWatcher_EnumerationCompleted;
-            deviceWatcher.Stopped += DeviceWatcher_Stopped;
+            watcher.NewDeviceDiscovered += (device) =>
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"New device: {device}");
+            };
 
-            // Start the watcher.
-            deviceWatcher.Start();
+            watcher.DeviceNameChanged += (device) =>
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($"Device name changed: {device}");
+            };
+
+            watcher.DeviceTimedOut += (device) =>
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Device timeout: {device}");
+            };
+
+            watcher.Run();
+
             while (true)
             {
-                if (device == null)
+                // Pause when enter is pressed and print all devices 
+                Console.ReadLine();
+
+                var devices = watcher.Devices;
+
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine($"{devices.Count} devices.....");
+
+                foreach ( var device in devices )
                 {
-                    Thread.Sleep(200);
+                    Console.WriteLine(device);
                 }
-                else
+
+                watcher.StopListening();
+
+                if (!watcher.Listening)
                 {
-                    Console.WriteLine("Press Any to pair with Wahoo Ticker");
-                    Console.ReadKey();
-                    BluetoothLEDevice bluetoothLeDevice = await BluetoothLEDevice.FromIdAsync(device.Id);
-                    Console.WriteLine("Attempting to pair with device");
-                    GattDeviceServicesResult result = await bluetoothLeDevice.GetGattServicesAsync();
-
-                    if (result.Status == GattCommunicationStatus.Success)
-                    {
-                        Console.WriteLine("Pairing succeeded");
-                        var services = result.Services;
-                        foreach (var service in services)
-                        {
-                            if (service.Uuid.ToString("N").Substring(4, 4) == HEART_RATE_SERVICE_ID)
-                            {
-                                Console.WriteLine("Found heart rate service");
-                                GattCharacteristicsResult charactiristicResult = await service.GetCharacteristicsAsync();
-
-                                if (charactiristicResult.Status == GattCommunicationStatus.Success)
-                                {
-                                    var characteristics = charactiristicResult.Characteristics;
-                                    foreach (var characteristic in characteristics)
-                                    {
-                                        Console.WriteLine("---------------");
-                                        Console.WriteLine(characteristic);
-                                        GattCharacteristicProperties properties = characteristic.CharacteristicProperties;
-
-                                        if (properties.HasFlag(GattCharacteristicProperties.Notify))
-                                        {
-                                            Console.WriteLine("Notify poroperty found");
-                                            GattCommunicationStatus status = await characteristic.WriteClientCharacteristicConfigurationDescriptorAsync(
-                        GattClientCharacteristicConfigurationDescriptorValue.Notify);
-                                            if (status == GattCommunicationStatus.Success)
-                                            {
-                                                characteristic.ValueChanged += Characteristic_ValueChanged;
-                                                // Server has been informed of clients interest.
-                                            }
-                                        }
-                                        
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    Console.WriteLine("Press Any Key to Exit application");
-                    Console.ReadKey();
-                    break;
+                    Console.ReadLine();
+                    watcher.Run();
                 }
             }
-            deviceWatcher.Stop();
         }
 
-        private static void Characteristic_ValueChanged(GattCharacteristic sender, GattValueChangedEventArgs args)
+        /// <summary>
+        /// Copy of the main method for use in exporting as a class library function that can be called from Java
+        /// </summary>
+        public static void StartProgram()
         {
-            var reader = DataReader.FromBuffer(args.CharacteristicValue);
-            var flags = reader.ReadByte();
-            var value = reader.ReadByte();
-            Console.WriteLine($"{flags} - {value}");
+
+            // The watcher holds the functionality for picking up BLE advertisements and their payload data 
+            var watcher = new MyWatcher();
+
+            watcher.StartedListening += () =>
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("Started listening");
+            };
+
+            watcher.StoppedListening += () =>
+            {
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("Stopped listening");
+            };
+
+            watcher.NewDeviceDiscovered += (device) =>
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"New device: {device}");
+            };
+
+            watcher.DeviceNameChanged += (device) =>
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine(device);
+            };
+
+            watcher.DeviceTimedOut += (device) =>
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Device timeout: {device}");
+            };
+
+            watcher.Run();
+
+            while (true)
+            {
+                // Pause when enter is pressed and print all devices 
+                Console.ReadLine();
+
+                var devices = watcher.Devices;
+
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine($"{devices.Count} devices.....");
+
+                foreach (var device in devices)
+                {
+                    Console.WriteLine(device);
+                }
+
+                watcher.StopListening();
+
+                if (!watcher.Listening)
+                {
+
+                    // Start checking again when enter is pressed
+                    Console.ReadLine();
+                    watcher.Run();
+                }
+            }
         }
 
-        private static void DeviceWatcher_Stopped(DeviceWatcher sender, object args)
+        /// <summary>
+        /// Checks specifically for the BlueCharm bluetooth signal.
+        /// </summary>
+        /// <returns>True if the signal is detected, false otherwise</returns>
+        public static bool CheckForBlueCharm()
         {
-            //throw new NotImplementedException();
-        }
+            var watcher = new MyWatcher();
+            bool signal = false;
 
-        private static void DeviceWatcher_EnumerationCompleted(DeviceWatcher sender, object args)
-        {
-            //throw new NotImplementedException();
-        }
 
-        private static void DeviceWatcher_Removed(DeviceWatcher sender, DeviceInformationUpdate args)
-        {
-            //throw new NotImplementedException();
-        }
+            watcher.Run();
+          
 
-        private static void DeviceWatcher_Updated(DeviceWatcher sender, DeviceInformationUpdate args)
-        {
-            //throw new NotImplementedException();
-        }
+            while (!signal)
+            {
+               
+                var devices = watcher.Devices;
 
-        private static void DeviceWatcher_Added(DeviceWatcher sender, DeviceInformation args)
-        {
-            Console.WriteLine(args.Name);
-            if (args.Name == "TICKR 2966")
-                device = args;
-            //throw new NotImplementedException();
+                foreach (var device in devices)
+                {
+                    if (device.Name == "MyBlueCharm")
+                    {
+                        signal = true;
+                        Console.WriteLine("Signal detected");
+                    }
+                }
+            }
+            return signal;
         }
     }
 }
