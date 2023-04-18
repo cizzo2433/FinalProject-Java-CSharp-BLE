@@ -9,5 +9,6 @@ public class Test {
 
         // Will print message to console when signal is detected
         Javonet.getType("Program").invoke("CheckForBlueCharm");
+        //test
     }
 }
