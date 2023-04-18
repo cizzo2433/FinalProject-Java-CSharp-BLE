@@ -157,7 +157,7 @@ namespace BluetoothLEReceiver
                     if (device.Name == "MyBlueCharm")
                     {
                         signal = true;
-                        Console.WriteLine("Signal detected");
+                        Console.WriteLine("Signal Found");
                     }
                 }
             }
