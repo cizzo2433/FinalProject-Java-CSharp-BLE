@@ -109,7 +109,7 @@ namespace BluetoothLEReceiver
 
             while (true)
             {
-                // Pause when enter is pressed and print all devices 
+                // Pause when enter is pressed and print devices 
                 Console.ReadLine();
 
                 var devices = watcher.Devices;
