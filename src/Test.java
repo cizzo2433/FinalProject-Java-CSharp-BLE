@@ -7,6 +7,5 @@ public class Test {
         Javonet.activate(Constants.email, Constants.APIkey, JavonetFramework.v40);
         Javonet.addReference(Constants.filePath);
         Javonet.getType("Program").invoke("CheckForBlueCharm");
-        int x = 10;
     }
 }
