@@ -1,7 +1,7 @@
 import com.javonet.Javonet;
 import com.javonet.JavonetException;
 import com.javonet.JavonetFramework;
-import helpers.SynthesiserV2;
+import helpers.SynthesizerV2;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.advanced.AdvancedPlayer;
 
@@ -48,7 +48,7 @@ public class Test {
      * @param text The text that will be spoken
      */
     public static void textToSpeech(String text) {
-        SynthesiserV2 synthesizer = new SynthesiserV2(Constants.googleAPIKey);
+        SynthesizerV2 synthesizer = new SynthesizerV2(Constants.googleAPIKey);
         Thread thread = new Thread(() -> {
             try {
 

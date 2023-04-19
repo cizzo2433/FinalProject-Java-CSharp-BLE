@@ -7,46 +7,31 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.List;
 
-import static helpers.GoogleTranslate.detectLanguage;
-
 
 /**
  * This class uses the V2 version of Google's Text to Speech API. Allows for additional specification of parameters
- * including speed and pitch. See the constructor for instructions regarding the API_Key.
- * @author Skylion (Aaron Gokaslan)
+ * including speed and pitch.
  */
-public class SynthesiserV2 extends BaseSynthsiser {
+public class SynthesizerV2 extends BaseSynthesizer {
 
 	private static final String GOOGLE_SYNTHESISER_URL = "https://www.google.com/speech-api/v2/synthesize?enc=mpeg" +
 			"&client=chromium";
-	
-	/**
-	 * API_KEY used for requests
-	 */
-	private final String API_KEY;
 
-	/**
-	 * language of the Text you want to translate
-	 */
-	private String languageCode;
-	
-	/**
-	 * The pitch of the generated audio
-	 */
-	private double pitch = 1.0;
-	
-	/**
-	 * The speed of the generated audio
-	 */
-	private double speed = 1.0;
+	private final String API_KEY; // API_KEY used for requests
+
+	private String languageCode;  // language of the Text you want to translate
+
+	private double pitch = 1.0;   // The pitch of the generated audio
+
+	private double speed = 1.0;  // The speed of the generated audio
 	
 	/**
 	 * Constructor
 	 * @param API_KEY The API-Key for Google's Speech API. An API key can be obtained by requesting
-	 * one by following the process shown at this 
+	 * one here
 	 * <a href="http://www.chromium.org/developers/how-tos/api-keys">url</a>.
 	 */
-	public SynthesiserV2(String API_KEY){
+	public SynthesizerV2(String API_KEY){
 		this.API_KEY = API_KEY;
 	}
 	
@@ -121,16 +106,21 @@ public class SynthesiserV2 extends BaseSynthsiser {
 		}
 
 		if(synthText.length()>100){
-			List<String> fragments = parseString(synthText);//parses String if too long
+
+			// parses String if too long
+			List<String> fragments = parseString(synthText);
 			String tmp = getLanguage();
-			setLanguage(languageCode);//Keeps it from autodetecting each fragment.
+
+			// Keeps it from autodetecting each fragment
+			setLanguage(languageCode);
 			InputStream out = getMP3Data(fragments);
-			setLanguage(tmp);//Reverts it to it's previous Language such as auto.
+
+			// Reverts to its previous Language
+			setLanguage(tmp);
 			return out;
 		}
 
-
-		String encoded = URLEncoder.encode(synthText, "UTF-8"); //Encode
+		String encoded = URLEncoder.encode(synthText, "UTF-8");
 
 		StringBuilder sb = new StringBuilder(GOOGLE_SYNTHESISER_URL);
 		sb.append("&key=" + API_KEY);
@@ -145,12 +135,13 @@ public class SynthesiserV2 extends BaseSynthsiser {
 			sb.append("&pitch=" + pitch/2.0);
 		}
 		
-		URL url = new URL(sb.toString()); //create url
+		URL url = new URL(sb.toString());
 
 		// Open New URL connection channel.
-		URLConnection urlConn = url.openConnection(); //Open connection
+		URLConnection urlConn = url.openConnection();
 
-		urlConn.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:2.0) Gecko/20100101 Firefox/4.0"); //Adding header for user agent is required
+		urlConn.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64;" +
+				" rv:2.0) Gecko/20100101 Firefox/4.0");
 		
 		return urlConn.getInputStream();
 	}

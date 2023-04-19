@@ -15,10 +15,10 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 /***************************************************************************************************************
- * An API for a Google Translation service in Java. Please Note: This API is unofficial and is not supported by Google. Subject to breakage at any
- * time. The translator allows for language detection and translation. Recommended for translation of user interfaces or speech commands. All
- * translation services provided via Google Translate
- * 
+ * An API for a Google Translation service in Java. Please Note: This API is unofficial and is not supported by Google.
+ * Subject to breakage at any time. The translator allows for language detection and translation. Recommended for
+ * translation of user interfaces or speech commands. All translation services provided via Google Translate
+ *
  * @author Aaron Gokaslan (Skylion)
  ***************************************************************************************************************/
 public final class GoogleTranslate { //Class marked as final since all methods are static
@@ -35,8 +35,8 @@ public final class GoogleTranslate { //Class marked as final since all methods a
 	};
 	
 	/**
-	 * Converts the ISO-639 code into a friendly language code in the user's default language For example, if the language is English and the default
-	 * locale is French, it will return "anglais" Useful for UI Strings
+	 * Converts the ISO-639 code into a friendly language code in the user's default language For example,
+	 * if the language is English and the default locale is French, it will return "anglais" Useful for UI Strings
 	 * 
 	 * @param languageCode
 	 *            The ISO639-1
