@@ -1,9 +1,11 @@
 import com.javonet.Javonet;
 import com.javonet.JavonetException;
 import com.javonet.JavonetFramework;
+import helpers.GoogleTranslate;
 import helpers.SynthesizerV2;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.advanced.AdvancedPlayer;
+import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 
@@ -16,7 +18,7 @@ import java.io.IOException;
  * there shouldn't be any need to even download Visual Studio, the dll file has everything in it.
  */
 public class Test {
-    public static void main(String[] args) throws JavonetException {
+    public static void main(String[] args) throws JavonetException, IOException, ParseException {
 
         Javonet.activate(Constants.email, Constants.APIkey, JavonetFramework.v40);
         boolean detected = false;
@@ -26,8 +28,22 @@ public class Test {
             detected = checkForBeacon();
             if (detected) {
                 textToSpeech("Beacon signal detected");
+
+                // This part below is just for fun. We can translate to any language by generating a URL to send to
+                // Google Translate, parsing the result, and then sending it to the textToSpeech method. First param
+                // for translate method is an ISO 639 language code, link below if you guys want to mess around
+                // https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+                try {
+
+                    // So they don't talk over each-other, increase time for longer messages
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                textToSpeech(GoogleTranslate.translate("es","Beacon signal detected"));
             }
         }
+
     }
 
     /**

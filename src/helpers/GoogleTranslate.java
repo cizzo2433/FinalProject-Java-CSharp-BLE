@@ -14,6 +14,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+// Mostly used the authors code here but had to make some edits to the translate method to fit our program
 /***************************************************************************************************************
  * An API for a Google Translation service in Java. Please Note: This API is unofficial and is not supported by Google.
  * Subject to breakage at any time. The translator allows for language detection and translation. Recommended for
@@ -76,7 +77,7 @@ public final class GoogleTranslate { //Class marked as final since all methods a
 		sb.append("&ssel=0");
 		sb.append("&tsel=0");
 		sb.append("&kc=1");
-		sb.append("&dt=t");//This parameters requests the translated text back.
+		sb.append("&dt=t");//This parameter requests the translated text back.
 		//Other dt parameters request additional information such as pronunciation, and so on.
 		//TODO Modify API so that the user may request this additional information.
 		sb.append("&ie=UTF-8"); //Input encoding
@@ -157,16 +158,19 @@ public final class GoogleTranslate { //Class marked as final since all methods a
 		if (raw.length < 2) {
 			return null;
 		}
-		Object obj = null;
-		JSONArray jArr = null;
+
+		Object obj;
+		JSONArray jArr;
+
+		// There is almost certainly an easier way to do all of this, but it was way worse before I fixed
 		JSONParser jParser = new JSONParser();
 		obj = jParser.parse(rawData);
 		jArr = (JSONArray) obj;
+		JSONArray jArr1 = (JSONArray) jArr.get(0);
 		StringBuilder trans = new StringBuilder();
-		for (int i = 0; i < jArr.size(); i++) {
-			trans.append(jArr.get(i).toString());
-		}
-		return trans.toString();//Returns the translation
+		JSONArray jArr2 = (JSONArray) jArr1.get(0);
+		trans.append(jArr2.get(0).toString());
+		return trans.toString();
 	}
 	
 	/**

@@ -45,7 +45,7 @@ public class SynthesizerV2 extends BaseSynthesizer {
 	}
 
 	/**
-	 * Note: set language to auto to enable automatic language detection.
+	 * Set language to auto to enable automatic language detection.
 	 * Setting to null will also implement Google's automatic language detection
 	 * @param languageCode The language code you would like to modify languageCode to.
 	 */
@@ -96,12 +96,12 @@ public class SynthesizerV2 extends BaseSynthesizer {
 			try{
 				languageCode = detectLanguage(synthText);//Detects language
 				if(languageCode == null){
-					languageCode = "en-us";//Reverts to Default Language if it can't detect it.
+					languageCode = "en-us";//Reverts to default language if it can't detect it.
 				}
 			}
 			catch(Exception ex){
 				ex.printStackTrace();
-				languageCode = "en-us";//Reverts to Default Language if it can't detect it.
+				languageCode = "en-us";
 			}
 		}
 
@@ -115,7 +115,7 @@ public class SynthesizerV2 extends BaseSynthesizer {
 			setLanguage(languageCode);
 			InputStream out = getMP3Data(fragments);
 
-			// Reverts to its previous Language
+			// Reverts to its previous language
 			setLanguage(tmp);
 			return out;
 		}
@@ -137,7 +137,7 @@ public class SynthesizerV2 extends BaseSynthesizer {
 		
 		URL url = new URL(sb.toString());
 
-		// Open New URL connection channel.
+		// Open new URL connection channel.
 		URLConnection urlConn = url.openConnection();
 
 		urlConn.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64;" +

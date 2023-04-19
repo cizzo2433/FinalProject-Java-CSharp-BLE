@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="169c84ae-c482-4bf0-8e19-b1763dc4b30a" name="Changes" comment="added text to speech">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/BaseSynthsiser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/BaseSynthesizer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helpers/GoogleTranslate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/GoogleTranslate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/SynthesiserV2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/SynthesizerV2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/SynthesizerV2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/SynthesizerV2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +212,18 @@
           <url>file://$PROJECT_DIR$/AlexaSkills/src/main/java/handlers/SessionEndedRequestHandler.java</url>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/helpers/GoogleTranslate.java</url>
+          <line>150</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="jArr" />
+        <watch expression="jArr2.get(0)" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
