@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="169c84ae-c482-4bf0-8e19-b1763dc4b30a" name="Changes" comment="added text to speech">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/GoogleTranslate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/GoogleTranslate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/SynthesizerV2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/SynthesizerV2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +51,7 @@
     </option>
   </component>
   <component name="ProjectId" id="2ObnGhqjk90TwKl02K327c7WHQq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
