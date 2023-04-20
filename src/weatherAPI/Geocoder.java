@@ -1,3 +1,5 @@
+package weatherAPI;
+
 import com.google.gson.Gson;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;

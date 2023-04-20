@@ -1,10 +1,10 @@
+package weatherAPI;
+
 import com.google.gson.Gson;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.util.Scanner;
 
 public class Weather {
     static double currentTemp;

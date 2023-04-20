@@ -1,5 +1,7 @@
+package weatherAPI;
+
 /**
- * This class will hold the weather data gathered from the Weather class,
+ * This class will hold the weather data gathered from the weatherAPI.Weather class,
  * allowing other classes to access current weather data.
  */
 public class WeatherData {
