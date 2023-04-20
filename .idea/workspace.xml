@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="169c84ae-c482-4bf0-8e19-b1763dc4b30a" name="Changes" comment="added text to speech">
+    <list default="true" id="169c84ae-c482-4bf0-8e19-b1763dc4b30a" name="Changes" comment="Added all weather related classed to Weather branch">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_10_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalProjectCIS111B.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FinalProjectCIS111B.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="updates" />
+        <entry key="$PROJECT_DIR$" value="Java" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -56,19 +58,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-19&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/izzoc/Desktop/FinalProjectCIS111B-Java-CSharp/FinalProjectCIS111B/.idea/libraries/Javonet-1.5.155.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "jdk.selected.JAVA_MODULE": "openjdk-19",
+    "last_opened_file_path": "C:/Users/izzoc/Desktop/FinalProjectCIS111B-Java-CSharp/FinalProjectCIS111B/.idea/libraries/Javonet-1.5.155.jar",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.12543154",
+    "settings.editor.selected.configurable": "MavenSettings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\izzoc\IdeaProjects\FinalProjectCIS111B\.idea\dll" />
@@ -167,7 +169,21 @@
       <option name="project" value="LOCAL" />
       <updated>1681928448779</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Created new branch with all weather related code">
+      <created>1681965928401</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1681965928401</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added all weather related classed to Weather branch">
+      <created>1681966137284</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1681966137284</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -201,7 +217,9 @@
     <MESSAGE value="rebuilt dll to use any CPU" />
     <MESSAGE value="pre pull commit" />
     <MESSAGE value="added text to speech" />
-    <option name="LAST_COMMIT_MESSAGE" value="added text to speech" />
+    <MESSAGE value="Created new branch with all weather related code" />
+    <MESSAGE value="Added all weather related classed to Weather branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added all weather related classed to Weather branch" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
