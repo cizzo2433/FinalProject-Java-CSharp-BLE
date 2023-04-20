@@ -38,7 +38,7 @@ public abstract class BaseSynthesizer {
 		ExecutorService pool = Executors.newFixedThreadPool(1000);
 
 		//Stores data that will be returned in the future
-		Set<Future<InputStream>> set = new LinkedHashSet<Future<InputStream>>(synthText.size());
+		Set<Future<InputStream>> set = new LinkedHashSet<>(synthText.size());
 
 		//vIterates through the list
 		for (String part : synthText) {
@@ -50,7 +50,7 @@ public abstract class BaseSynthesizer {
 			// Adds the response that will be returned to a set.
 			set.add(future);
 		}
-		List<InputStream> inputStreams = new ArrayList<InputStream>(set.size());
+		List<InputStream> inputStreams = new ArrayList<>(set.size());
 		for (Future<InputStream> future : set) {
 			try {
 				inputStreams.add(future.get());
@@ -75,7 +75,7 @@ public abstract class BaseSynthesizer {
 	 * @return A List of the String fragments from your input
 	 */
 	protected List<String> parseString(String input) {
-		return parseString(input, new ArrayList<String>());
+		return parseString(input, new ArrayList<>());
 	}
 	
 	/**
