@@ -7,10 +7,14 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLEncoder;
 
+/**
+ * Utilizes the OpenStreetMap Nominatim API to convert a given location to
+ * latitude and longitude. Queries can be passed either as City,State or Zip Code
+ */
 public class Geocoder {
 
-    private double lat;
-    private double lon;
+    private static double lat;
+    private static double lon;
 
     protected static double[] geocode (String location) {
         try {
@@ -29,6 +33,8 @@ public class Geocoder {
             LocationData[] locations = gson.fromJson(geoResponse.toString(), LocationData[].class);
 
             double[] coordinates = new double[]{locations[0].lat, locations[0].lon};
+            lat = locations[0].lat;
+            lon = locations[0].lon;
             return coordinates;
 
         } catch (Exception e) {
