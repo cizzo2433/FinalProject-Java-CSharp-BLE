@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JOptionPane;
 public class Activity_Wheel {
-    public static void main(String[] args) {
+    public static void pickActivity() {
         //variable "dice" acts as the randomizer depending on the int (number) given (shown later on)
         Random dice = new Random();
 
@@ -14,23 +14,19 @@ public class Activity_Wheel {
         //runs through if and else if statements until a match is found
         if (weather.equals("sunny")) {
             sunny(dice);
-        }
-        else if (weather.equals("chilly")) {
+        } else if (weather.equals("chilly")) {
             chilly(dice);
-        }
-        else if (weather.equals("raining")) {
-            raining(dice);
-        }
-        else if (weather.equals("stroming")) {
-            storming(dice);
-        }
-        else if (weather.equals("snowing")) {
-            snowing(dice);
-        }
-        else{
+        } else if (weather.equals("raining")) {
+            rainy(dice);
+        } else if (weather.equals("stroming")) {
+            stormy(dice);
+        } else if (weather.equals("snowing")) {
+            snowy(dice);
+        } else {
             System.out.println("There is not a wheel created yet for this type of weather");
         }
     }
+
     public static void sunny(Random dice) {
 
         //creates and adds items to ArrayList
@@ -45,18 +41,19 @@ public class Activity_Wheel {
         int sunSize = sun.size(); //finds array size number (as later on I can add code to add or remove an item)
 
         //prints the list of items/activities in ArrayList
-        System.out.println("Here are some activities to enjoy during a rainy day: ");
+        System.out.println("Here are some activities to enjoy during a sunny day: ");
         for (int i = 0; i < sunSize; i++) {
 
-            System.out.println(i+1 + ". " + sun.get(i));
+            System.out.println(i + 1 + ". " + sun.get(i));
         }
 
         //selects a random number from 1 to sunSize (number of items in list shown earlier (6))
         int itemNumber = dice.nextInt(sunSize);
 
         //prints out the activity that was randomly selected
-        System.out.println("\n" + "The Randomized activity winner is: " + sun.get(itemNumber));
+        System.out.println("\n" + "The randomized activity winner is: " + sun.get(itemNumber));
     }
+
     public static void chilly(Random dice) {
         ArrayList<String> chills = new ArrayList<String>();
         chills.add("Watch a movie/show");
@@ -68,18 +65,19 @@ public class Activity_Wheel {
         chills.add("Order delivery");
 
         int chillsSize = chills.size();
-        System.out.println("Here are some activities to enjoy during a rainy day: ");
+        System.out.println("Here are some activities to enjoy during a chilly day: ");
 
         for (int i = 0; i < chillsSize; i++) {
 
-            System.out.println(i+1 + ". " + chills.get(i));
+            System.out.println(i + 1 + ". " + chills.get(i));
         }
 
         int itemNumber = dice.nextInt(chillsSize);
 
         System.out.println("\n" + "The Randomized activity winner is: " + chills.get(itemNumber));
     }
-    public static void raining(Random dice) {
+
+    public static void rainy(Random dice) {
         ArrayList<String> rain = new ArrayList<String>();
         rain.add("Watch a movie/show");
         rain.add("Go on a walk (indoor track)");
@@ -95,14 +93,15 @@ public class Activity_Wheel {
 
         for (int i = 0; i < rainSize; i++) {
 
-            System.out.println(i+1 + ". " + rain.get(i));
+            System.out.println(i + 1 + ". " + rain.get(i));
         }
 
         int itemNumber = dice.nextInt(rainSize);
 
         System.out.println("\n" + "The Randomized activity winner is: " + rain.get(itemNumber));
     }
-    public static void storming(Random dice) {
+
+    public static void stormy(Random dice) {
         ArrayList<String> storm = new ArrayList<String>();
         storm.add("Watch a movie/show");
         storm.add("Go on a walk (indoor track)");
@@ -112,18 +111,19 @@ public class Activity_Wheel {
         storm.add("Order delivery (if possible)");
 
         int rainSize = storm.size();
-        System.out.println("Here are some activities to enjoy during a rainy day: ");
+        System.out.println("Here are some activities to enjoy during a stormy day: ");
 
         for (int i = 0; i < rainSize; i++) {
 
-            System.out.println(i+1 + ". " + storm.get(i));
+            System.out.println(i + 1 + ". " + storm.get(i));
         }
 
         int itemNumber = dice.nextInt(rainSize);
 
         System.out.println("\n" + "The Randomized activity winner is: " + storm.get(itemNumber));
     }
-    public static void snowing(Random dice) {
+
+    public static void snowy(Random dice) {
         ArrayList<String> snow = new ArrayList<String>();
         snow.add("Watch a movie/show");
         snow.add("Go on a walk (indoor track)");
@@ -135,12 +135,12 @@ public class Activity_Wheel {
         snow.add("Snow Tubing");
 
         int rainSize = snow.size();
+        System.out.println("Here are some activities to enjoy during a snowy day: ");
 
         for (int i = 0; i < rainSize; i++) {
 
-            System.out.println(i+1 + ". " + snow.get(i));
+            System.out.println(i + 1 + ". " + snow.get(i));
         }
-        Object[] options1 = {" Add ", " Remove ", " Select activity at random "};
 
         int itemNumber = dice.nextInt(rainSize);
 
