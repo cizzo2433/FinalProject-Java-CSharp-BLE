@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="169c84ae-c482-4bf0-8e19-b1763dc4b30a" name="Changes" comment="added text to speech">
+    <list default="true" id="169c84ae-c482-4bf0-8e19-b1763dc4b30a" name="Changes" comment="added translation capability">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/BaseSynthesizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/BaseSynthesizer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helpers/GoogleTranslate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/GoogleTranslate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helpers/SynthesizerV2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/SynthesizerV2.java" afterDir="false" />
     </list>
@@ -169,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681928448779</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="added translation capability">
+      <created>1681935483880</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1681935483880</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -203,7 +211,8 @@
     <MESSAGE value="rebuilt dll to use any CPU" />
     <MESSAGE value="pre pull commit" />
     <MESSAGE value="added text to speech" />
-    <option name="LAST_COMMIT_MESSAGE" value="added text to speech" />
+    <MESSAGE value="added translation capability" />
+    <option name="LAST_COMMIT_MESSAGE" value="added translation capability" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -214,7 +223,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/helpers/GoogleTranslate.java</url>
-          <line>150</line>
+          <line>148</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

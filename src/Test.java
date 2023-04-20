@@ -20,7 +20,10 @@ import java.io.IOException;
 public class Test {
     public static void main(String[] args) throws JavonetException, IOException, ParseException {
 
+        // This is needed once at the beginning of the program to translate the C# library
+        // Not needed for any consecutive calls to C# functions
         Javonet.activate(Constants.email, Constants.APIkey, JavonetFramework.v40);
+
         boolean detected = false;
 
         // Run until signal is detected
@@ -43,14 +46,14 @@ public class Test {
                 textToSpeech(GoogleTranslate.translate("es","Beacon signal detected"));
             }
         }
-
     }
 
     /**
      * Test check for BlueCharm beacon BLE signal. Currently, is set to search for the beacon name "MyBlueCharm",
      * but the dll can be reconfigured to use another identifier.
+     *
      * @return a boolean
-     * @throws JavonetException
+     * @throws JavonetException if any exception happens on the .NET side
      */
     public static boolean checkForBeacon() throws JavonetException {
         Javonet.addReference(Constants.filePath);
@@ -61,6 +64,7 @@ public class Test {
 
     /**
      * Tester method for text to speech using Google's text to speech API
+     *
      * @param text The text that will be spoken
      */
     public static void textToSpeech(String text) {
