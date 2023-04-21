@@ -33,7 +33,7 @@ public class Activity_Wheel {
         sun.add("Watch a movie or show");
         sun.add("Go on a walk (outdoors)");
         sun.add("Play volleyball");
-        sun.add("Play a football");
+        sun.add("Play football");
         sun.add("Go out to eat");
         sun.add("Go out to park");
 
@@ -43,7 +43,7 @@ public class Activity_Wheel {
         int itemNumber = dice.nextInt(sunSize);
 
         //prints out the activity that was randomly selected
-        sun.add(sun.size(), "The randomized activity winner is: " + sun.get(itemNumber));
+        sun.add(sun.size(), "You should " + sun.get(itemNumber));
 
         activityMessage = sun.get(sun.size()-1);
     }

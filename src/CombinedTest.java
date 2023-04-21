@@ -23,14 +23,14 @@ public class CombinedTest {
 
         boolean detected = false; // True once beacon signal detected
 
+        double[] location = Geocoder.geocode("19312");
+
+        assert location != null;
+        Weather.getWeather(location[0], location[1]);
+
         while (!detected) {
             detected = checkForBeacon();
             if (detected) {
-                double[] location = Geocoder.geocode("19312");
-
-                assert location != null;
-
-                Weather.getWeather(location[0], location[1]);
 
                 String message = "The current temperature is " + Weather.getCurrentTemp() +
                         " degrees, and conditions are " + Weather.getCurrentCondition();
@@ -70,7 +70,8 @@ public class CombinedTest {
     public static Thread textToSpeech(String text) {
 
         SynthesizerV2 synthesizer = new SynthesizerV2(Constants.googleAPIKey);
-        Thread thread = new Thread(() -> {
+
+        return new Thread(() -> {
             try {
 
                 // Using JLayer to play MP3 data
@@ -81,7 +82,5 @@ public class CombinedTest {
                 e.printStackTrace();
             }
         });
-
-        return thread;
     }
 }
