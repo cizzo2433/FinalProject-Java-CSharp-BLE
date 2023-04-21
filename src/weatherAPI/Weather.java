@@ -12,8 +12,8 @@ import java.net.URL;
  */
 
 public class Weather {
-    static double currentTemp;          // Current temperature in ºF
-    static String currentCondition;     // Current weather condition
+    protected static double currentTemp;          // Current temperature in ºF
+    protected static String currentCondition;     // Current weather condition
     // API Key for OpenWeatherMap OneCall 3.0 API
     private static final String API_KEY = "3a86deaa95c6eea2a6462d1d879afc68";
     // API Endpoint
@@ -47,5 +47,23 @@ public class Weather {
             e.printStackTrace();
             System.out.println("An error occurred while retrieving weather information.");
         }
+    }
+
+    // GETTERS AND SETTERS
+
+    public static double getCurrentTemp() {
+        return currentTemp;
+    }
+
+    public static void setCurrentTemp(double currentTemp) {
+        Weather.currentTemp = currentTemp;
+    }
+
+    public static String getCurrentCondition() {
+        return currentCondition;
+    }
+
+    public static void setCurrentCondition(String currentCondition) {
+        Weather.currentCondition = currentCondition;
     }
 }
