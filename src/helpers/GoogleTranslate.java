@@ -14,14 +14,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-// Mostly used the authors code here but had to make some edits to the translate method to fit our program
-/***************************************************************************************************************
- * An API for a Google Translation service in Java. Please Note: This API is unofficial and is not supported by Google.
- * Subject to breakage at any time. The translator allows for language detection and translation. Recommended for
- * translation of user interfaces or speech commands. All translation services provided via Google Translate
- *
- * @author Aaron Gokaslan (Skylion)
- ***************************************************************************************************************/
 public final class GoogleTranslate { //Class marked as final since all methods are static
 	
 	/**
@@ -38,8 +30,7 @@ public final class GoogleTranslate { //Class marked as final since all methods a
 	 * Converts the ISO-639 code into a friendly language code in the user's default language For example,
 	 * if the language is English and the default locale is French, it will return "anglais" Useful for UI Strings
 	 * 
-	 * @param languageCode
-	 *            The ISO639-1
+	 * @param languageCode The ISO639-1
 	 * @return The language in the user's default language
 	 */
 	public static String getDisplayLanguage(String languageCode) {
@@ -49,12 +40,9 @@ public final class GoogleTranslate { //Class marked as final since all methods a
 	/**
 	 * Completes the complicated process of generating the URL
 	 * 
-	 * @param sourceLanguage
-	 *            The source language
-	 * @param targetLanguage
-	 *            The target language
-	 * @param text
-	 *            The text that you wish to generate
+	 * @param sourceLanguage The source language
+	 * @param targetLanguage The target language
+	 * @param text The text that you wish to generate
 	 * @return The generated URL as a string.
 	 */
 	private static String generateURL(String sourceLanguage , String targetLanguage , String text) throws UnsupportedEncodingException {
@@ -87,11 +75,9 @@ public final class GoogleTranslate { //Class marked as final since all methods a
 	/**
 	 * Automatically determines the language of the original text
 	 * 
-	 * @param text
-	 *            represents the text you want to check the language of
+	 * @param text represents the text you want to check the language of
 	 * @return The ISO-639 code for the language
-	 * @throws IOException
-	 *             if it cannot complete the request
+	 * @throws IOException if it cannot complete the request
 	 */
 	public static String detectLanguage(String text) throws IOException {
 		String urlText = generateURL("auto", "en", text);
@@ -105,11 +91,9 @@ public final class GoogleTranslate { //Class marked as final since all methods a
 	 * translate UI strings
 	 * 
 	 * @see GoogleTranslate#translate(String, String, String)
-	 * @param text
-	 *            The text you want to translate
+	 * @param text The text you want to translate
 	 * @return The translated text
-	 * @throws IOException
-	 *             if cannot complete request
+	 * @throws IOException if cannot complete request
 	 */
 	public static String translate(String text) throws IOException, ParseException {
 		return translate(Locale.getDefault().getLanguage(), text);
@@ -119,30 +103,24 @@ public final class GoogleTranslate { //Class marked as final since all methods a
 	 * Automatically detects language and translate to the targetLanguage. Allows Google to determine source language
 	 * 
 	 * @see GoogleTranslate#translate(String, String, String)
-	 * @param targetLanguage
-	 *            The language you want to translate into in ISO-639 format
-	 * @param text
-	 *            The text you actually want to translate
+	 * @param targetLanguage The language you want to translate into in ISO-639 format
+	 * @param text The text you actually want to translate
 	 * @return The translated text.
-	 * @throws IOException
-	 *             if it cannot complete the request
+	 * @throws IOException if it cannot complete the request
 	 */
 	public static String translate(String targetLanguage , String text) throws IOException, ParseException {
 		return translate("auto", targetLanguage, text);
 	}
 	
 	/**
-	 * Translate text from sourceLanguage to targetLanguage Specifying the sourceLanguage greatly improves accuracy over short Strings
+	 * Translate text from sourceLanguage to targetLanguage Specifying the sourceLanguage greatly
+	 * improves accuracy over short Strings
 	 * 
-	 * @param sourceLanguage
-	 *            The language you want to translate from in ISO-639 format
-	 * @param targetLanguage
-	 *            The language you want to translate into in ISO-639 format
-	 * @param text
-	 *            The text you actually want to translate
+	 * @param sourceLanguage The language you want to translate from in ISO-639 format
+	 * @param targetLanguage The language you want to translate into in ISO-639 format
+	 * @param text The text you actually want to translate
 	 * @return the translated text.
-	 * @throws IOException
-	 *             if it cannot complete the request
+	 * @throws IOException if it cannot complete the request
 	 */
 	public static String translate(String sourceLanguage , String targetLanguage , String text) throws IOException, ParseException {
 		String urlText = generateURL(sourceLanguage, targetLanguage, text);
@@ -173,8 +151,7 @@ public final class GoogleTranslate { //Class marked as final since all methods a
 	/**
 	 * Converts a URL to Text
 	 * 
-	 * @param url
-	 *            that you want to generate a String from
+	 * @param url that you want to generate a String from
 	 * @return The generated String
 	 * @throws IOException
 	 *             if it cannot complete the request
@@ -197,8 +174,7 @@ public final class GoogleTranslate { //Class marked as final since all methods a
 	/**
 	 * Searches rawData for Language
 	 * 
-	 * @param rawData
-	 *            the raw String directly from Google you want to search through
+	 * @param rawData the raw String directly from Google you want to search through
 	 * @return The language parsed from the rawData or en-US (English-United States) if Google cannot determine it.
 	 */
 	private static String findLanguage(String rawData) {
@@ -223,8 +199,7 @@ public final class GoogleTranslate { //Class marked as final since all methods a
 	/**
 	 * Checks if all characters in text are letters.
 	 * 
-	 * @param text
-	 *            The text you want to determine the validity of.
+	 * @param text The text you want to determine the validity of.
 	 * @return True if all characters are letter, otherwise false.
 	 */
 	private static boolean containsLettersOnly(String text) {
@@ -246,10 +221,8 @@ public final class GoogleTranslate { //Class marked as final since all methods a
 	/**
 	 * An implementation of an unsigned right shift. Necessary since Java does not have unsigned ints.
 	 * 
-	 * @param x
-	 *            The number you wish to shift.
-	 * @param bits
-	 *            The number of bytes you wish to shift.
+	 * @param x The number you wish to shift.
+	 * @param bits The number of bytes you wish to shift.
 	 * @return The shifted number, unsigned.
 	 */
 	private static int shr32(int x , int bits) {
@@ -273,8 +246,7 @@ public final class GoogleTranslate { //Class marked as final since all methods a
 	/**
 	 * Generates the token needed for translation.
 	 * 
-	 * @param text
-	 *            The text you want to generate the token for.
+	 * @param text The text you want to generate the token for.
 	 * @return The generated token as a string.
 	 */
 	private static String generateToken(String text) {

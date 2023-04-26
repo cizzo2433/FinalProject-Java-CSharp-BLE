@@ -1,8 +1,67 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
+
 public class Activity_Wheel {
 
-    private static String activityMessage;
+    private static String activityMessage; // may not need this anymore
+
+    /**
+     * Returns a String message containing an activity that is randomly selected from an ArrayList
+     * of possible activities, which is filled based on the weather String passed to the method
+     *
+     * @param weather a String containing a type of weather condition obtained from the weatherAPI
+     * @return a String message
+     * @throws FileNotFoundException
+     */
+    public static String generateActivity(String weather) throws FileNotFoundException {
+        
+        Random dice = new Random();
+        ArrayList<String> activities = null;
+
+        switch (weather) {
+            case "Clear":
+                activities = generateList(new File("ref/Clear.txt"));
+                break;
+            case "Clouds":
+                activities = generateList(new File("ref/Clouds.txt"));
+                break;
+            case "Rain", "Drizzle":
+                activities = generateList(new File("ref/Rain.txt"));
+                break;
+            case "Thunderstorm":
+                activities = generateList(new File("ref/Storm.txt"));
+                break;
+            case "Snow":
+                activities = generateList(new File("ref/Snow.txt"));
+                break;
+            default:
+                System.out.println("error");
+                break;
+        }
+        return "You should " + activities.get(dice.nextInt(activities.size()));
+    }
+
+    /**
+     * Fills an ArrayList of Strings with the lines of a txt file corresponding to a type of weather
+     *
+     * @param file the reference file
+     * @return an ArrayList containing different activities
+     * @throws FileNotFoundException
+     */
+    private static ArrayList<String> generateList(File file) throws FileNotFoundException {
+        Scanner fileReader = new Scanner(file);
+        ArrayList<String> activities = new ArrayList<>();
+
+        while (fileReader.hasNext()) {
+            activities.add(fileReader.nextLine());
+        }
+        return activities;
+    }
+
+    // Consolidated everything below into the 2 methods above
 
     public static String pickActivity(String weather) {
 
@@ -37,7 +96,7 @@ public class Activity_Wheel {
         sun.add("Go out to eat");
         sun.add("Go out to park");
 
-        int sunSize = sun.size() - 1; //finds array size number (as later on I can add code to add or remove an item)
+        int sunSize = sun.size(); //finds array size number (as later on I can add code to add or remove an item)
 
         //selects a random number from 1 to sunSize (number of items in list shown earlier (6))
         int itemNumber = dice.nextInt(sunSize);

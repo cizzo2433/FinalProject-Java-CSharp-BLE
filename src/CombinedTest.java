@@ -1,13 +1,19 @@
 import com.javonet.Javonet;
 import com.javonet.JavonetException;
 import com.javonet.JavonetFramework;
+import helpers.GoogleTranslate;
 import helpers.SynthesizerV2;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.advanced.AdvancedPlayer;
+import org.json.simple.parser.ParseException;
 import weatherAPI.Geocoder;
 import weatherAPI.Weather;
 
+import javax.swing.plaf.basic.BasicTreeUI;
+import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * Test combining the weather API, activity randomizer, Bluetooth functionality, and text to speech capabilities.
@@ -15,27 +21,48 @@ import java.io.IOException;
  */
 public class CombinedTest {
 
-    public static void main(String[] args) throws JavonetException {
+    public static void main(String[] args) throws JavonetException, FileNotFoundException {
 
         // This is needed once at the beginning of the program to translate the C# library
         // Not needed for any consecutive calls to C# functions
         Javonet.activate(Constants.email, Constants.APIkey, JavonetFramework.v40);
+        Javonet.addReference(Constants.filePath);
+        JavaWatcher jw = new JavaWatcher();
 
         boolean detected = false; // True once beacon signal detected
 
         double[] location = Geocoder.geocode("19312");
+        System.out.println("Location Found");
 
-        assert location != null;
+        assert location != null; // possible NullPointerException from location
         Weather.getWeather(location[0], location[1]);
 
         while (!detected) {
-            detected = checkForBeacon();
+
+            detected = jw.checkForBeacon();
+            // below code is for testing without beacon, comment out the line right above this,
+            // uncomment the section below, and press enter while running to simulate beacon signal
+
+     /*       Scanner sc = new Scanner(System.in);
+            String line = sc.nextLine();
+
+            while (line != null) {
+                System.out.println(line);
+
+                if (line.isEmpty()) {
+                    System.out.println("check");
+                    detected = true;
+                    line = null;
+                }
+            }*/
+
+
             if (detected) {
 
                 String message = "The current temperature is " + Weather.getCurrentTemp() +
                         " degrees, and conditions are " + Weather.getCurrentCondition();
+                String activity = Activity_Wheel.generateActivity(Weather.getCurrentCondition());
 
-                String activity = Activity_Wheel.pickActivity(Weather.getCurrentCondition());
 
                 // Better way to have messages read one after the other without using Thread.sleep()
                 // since the time between messages can vary
