@@ -12,12 +12,21 @@ import java.net.URL;
  */
 
 public class Weather {
-    protected static double currentTemp;          // Current temperature in ºF
-    protected static String currentCondition;     // Current weather condition
+    public static double currentTemp;          // Current temperature in ºF
+    public static String currentCondition;     // Current weather condition
     // API Key for OpenWeatherMap OneCall 3.0 API
     private static final String API_KEY = "3a86deaa95c6eea2a6462d1d879afc68";
     // API Endpoint
     private static final String API_ENDPOINT = "https://api.openweathermap.org/data/3.0/onecall?lat=%s&lon=%s&exclude=minutely,hourly,daily,alerts&appid=%s&units=imperial";
+
+    /**
+     * Overridden method to accept a String location and call Geocoder directly
+     * @param location
+     */
+    public static void getWeather(String location) {
+        Geocoder.geocode(location);
+        getWeather(Geocoder.lat, Geocoder.lon);
+    }
 
     /**
      * Utilizes the OpenWeatherMap OneCall 3.0 API to gather
@@ -47,23 +56,5 @@ public class Weather {
             e.printStackTrace();
             System.out.println("An error occurred while retrieving weather information.");
         }
-    }
-
-    // GETTERS AND SETTERS
-
-    public static double getCurrentTemp() {
-        return currentTemp;
-    }
-
-    public static void setCurrentTemp(double currentTemp) {
-        Weather.currentTemp = currentTemp;
-    }
-
-    public static String getCurrentCondition() {
-        return currentCondition;
-    }
-
-    public static void setCurrentCondition(String currentCondition) {
-        Weather.currentCondition = currentCondition;
     }
 }

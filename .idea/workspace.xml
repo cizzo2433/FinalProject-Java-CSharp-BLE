@@ -4,15 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee89cf87-9dee-447e-ac88-57ffb9ab1984" name="Changes" comment="added CombinedTest, made some edits to Activity_Wheel to return Strings for testing">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="ee89cf87-9dee-447e-ac88-57ffb9ab1984" name="Changes" comment="rework">
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Activity_Wheel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Activity_Wheel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BeaconMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BeaconMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CombinedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CombinedTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JavaWatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaWatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/GoogleTranslate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/GoogleTranslate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Activity_Wheel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/Activity_Wheel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CombinedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/CombinedTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/weatherAPI/Geocoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/weatherAPI/Geocoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/weatherAPI/Weather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/weatherAPI/Weather.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,8 +55,8 @@
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="helpers" />
-      <recent name="weatherAPI" />
       <recent name="tests" />
+      <recent name="weatherAPI" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -95,7 +96,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682088086094</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="rework">
+      <created>1682531806556</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1682531806556</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -125,7 +133,8 @@
     <MESSAGE value="added ref directory" />
     <MESSAGE value="created weatherAPI package" />
     <MESSAGE value="added CombinedTest, made some edits to Activity_Wheel to return Strings for testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="added CombinedTest, made some edits to Activity_Wheel to return Strings for testing" />
+    <MESSAGE value="rework" />
+    <option name="LAST_COMMIT_MESSAGE" value="rework" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -140,7 +149,7 @@
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Activity_Wheel.java</url>
+          <url>file://$PROJECT_DIR$/src/helpers/Activity_Wheel.java</url>
           <line>23</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>

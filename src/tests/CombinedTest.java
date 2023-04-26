@@ -1,6 +1,10 @@
+package tests;
+
 import com.javonet.Javonet;
 import com.javonet.JavonetException;
 import com.javonet.JavonetFramework;
+import helpers.Activity_Wheel;
+import helpers.Constants;
 import helpers.GoogleTranslate;
 import helpers.SynthesizerV2;
 import javazoom.jl.decoder.JavaLayerException;
@@ -16,7 +20,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * Test combining the weather API, activity randomizer, Bluetooth functionality, and text to speech capabilities.
+ * tests.Test combining the weather API, activity randomizer, Bluetooth functionality, and text to speech capabilities.
  * Our magnum opus
  */
 public class CombinedTest {
@@ -26,8 +30,6 @@ public class CombinedTest {
         // This is needed once at the beginning of the program to translate the C# library
         // Not needed for any consecutive calls to C# functions
         Javonet.activate(Constants.email, Constants.APIkey, JavonetFramework.v40);
-        Javonet.addReference(Constants.filePath);
-        JavaWatcher jw = new JavaWatcher();
 
         boolean detected = false; // True once beacon signal detected
 
@@ -39,7 +41,7 @@ public class CombinedTest {
 
         while (!detected) {
 
-            detected = jw.checkForBeacon();
+            detected = checkForBeacon();
             // below code is for testing without beacon, comment out the line right above this,
             // uncomment the section below, and press enter while running to simulate beacon signal
 
@@ -59,9 +61,9 @@ public class CombinedTest {
 
             if (detected) {
 
-                String message = "The current temperature is " + Weather.getCurrentTemp() +
-                        " degrees, and conditions are " + Weather.getCurrentCondition();
-                String activity = Activity_Wheel.generateActivity(Weather.getCurrentCondition());
+                String message = "The current temperature is " + Weather.currentTemp +
+                        " degrees, and conditions are " + Weather.currentCondition;
+                String activity = Activity_Wheel.generateActivity(Weather.currentCondition);
 
 
                 // Better way to have messages read one after the other without using Thread.sleep()
@@ -76,7 +78,7 @@ public class CombinedTest {
     }
 
     /**
-     * Test check for BlueCharm beacon BLE signal. Currently, is set to search for the beacon name "MyBlueCharm",
+     * tests.Test check for BlueCharm beacon BLE signal. Currently, is set to search for the beacon name "MyBlueCharm",
      * but the dll can be reconfigured to use another identifier.
      *
      * @return a boolean
@@ -109,5 +111,8 @@ public class CombinedTest {
                 e.printStackTrace();
             }
         });
+        // We don't want the application to terminate before this Thread terminates
+        //thread.setDaemon(false);
+        //thread.start();
     }
 }

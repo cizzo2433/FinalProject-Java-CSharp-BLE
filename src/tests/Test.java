@@ -1,6 +1,9 @@
+package tests;
+
 import com.javonet.Javonet;
 import com.javonet.JavonetException;
 import com.javonet.JavonetFramework;
+import helpers.Constants;
 import helpers.GoogleTranslate;
 import helpers.SynthesizerV2;
 import javazoom.jl.decoder.JavaLayerException;
@@ -49,7 +52,7 @@ public class Test {
     }
 
     /**
-     * Test check for BlueCharm beacon BLE signal. Currently, is set to search for the beacon name "MyBlueCharm",
+     * tests.Test check for BlueCharm beacon BLE signal. Currently, is set to search for the beacon name "MyBlueCharm",
      * but the dll can be reconfigured to use another identifier.
      *
      * @return a boolean

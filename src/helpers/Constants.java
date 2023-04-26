@@ -1,3 +1,5 @@
+package helpers;
+
 /**
  * Helper class for constants
  */

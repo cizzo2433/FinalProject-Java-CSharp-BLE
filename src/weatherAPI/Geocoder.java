@@ -13,8 +13,8 @@ import java.net.URLEncoder;
  */
 public class Geocoder {
 
-    private static double lat;
-    private static double lon;
+    protected static double lat;
+    protected static double lon;
 
     public static double[] geocode(String location) {
         try {
