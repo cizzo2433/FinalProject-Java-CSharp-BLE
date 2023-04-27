@@ -78,6 +78,7 @@ public class Activity_Wheel {
         list.add("Play a football");
         list.add("Go out to eat");
         list.add("Go out to park");
+        list.add("Go out swimming");
         return list;
     }
 
