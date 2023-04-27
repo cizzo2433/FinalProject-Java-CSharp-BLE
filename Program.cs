@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Device.Location;
 using Windows.Devices.Enumeration;
+using Windows.Devices.Geolocation;
 
 namespace BluetoothLEReceiver 
 {
@@ -8,69 +10,82 @@ namespace BluetoothLEReceiver
         public static void Main(string[] args)
         {
 
-            var watcher = new MyWatcher();
+            
+            
+        }
 
-            watcher.StartedListening += () =>
+        /// <summary>
+        /// Method for testing, will show the status of finding current location, or if location services are disables 
+        /// </summary>
+        public static void ShowStatusUpdates()
+        {
+            GeoCoordinateWatcher watcher = new GeoCoordinateWatcher();
+            watcher.Start();
+
+            watcher.StatusChanged += new EventHandler<GeoPositionStatusChangedEventArgs>(watcher_StatusChanged);
+
+            Console.WriteLine("Enter any key to quit.");
+            Console.ReadLine();
+        }
+
+        /// <summary>
+        /// Prints to console based on current GeoPositionStatus enum field
+        /// </summary>
+        /// <param name="sender"></param> the watcher sending the event 
+        /// <param name="e"></param> an event representing a change in status of the watcher 
+        public static void watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
+        {
+            switch (e.Status)
             {
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine("Started listening");
-            };
+                case GeoPositionStatus.Initializing:
+                    Console.WriteLine("Searching for location");
+                    break;
 
-            watcher.StoppedListening += () =>
-            {
-                Console.ForegroundColor = ConsoleColor.Gray;
-                Console.WriteLine("Stopped listening");
-            };
+                case GeoPositionStatus.Ready:
+                    Console.WriteLine("Have location");
+                    break;
 
-            watcher.NewDeviceDiscovered += (device) =>
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"New device: {device}");
-            };
+                case GeoPositionStatus.NoData:
+                    Console.WriteLine("No data");
+                    break;
 
-            watcher.DeviceNameChanged += (device) =>
-            {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine($"Device name changed: {device}");
-            };
+                case GeoPositionStatus.Disabled:
+                    Console.WriteLine("Disabled");
+                    break;
 
-            watcher.DeviceTimedOut += (device) =>
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Device timeout: {device}");
-            };
-
-            watcher.Run();
-
-            while (true)
-            {
-                // Pause when enter is pressed and print all devices 
-                Console.ReadLine();
-
-                var devices = watcher.Devices;
-
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine($"{devices.Count} devices.....");
-
-                foreach (var device in devices)
-                {
-                    Console.WriteLine(device);
-                }
-
-                watcher.StopListening();
-
-                if (!watcher.Listening)
-                {
-                    Console.ReadLine();
-                    watcher.Run();
-                }
             }
         }
 
         /// <summary>
-        /// Copy of the main method for use in exporting as a class library function that can be called from Java
+        /// Accesses system location services to determine current latitude and longitude coordinates
         /// </summary>
-        public static void StartProgram()
+        /// <returns></returns> a double array with latitude and longitude
+        public static double[] GetLocationProperty()
+        {
+            GeoCoordinateWatcher watcher = new GeoCoordinateWatcher();
+
+            // Do not suppress prompt, and wait 1000 milliseconds to start.
+            watcher.TryStart(false, TimeSpan.FromMilliseconds(1000));
+
+            GeoCoordinate coord = watcher.Position.Location;
+            Console.WriteLine("Searching");
+
+            while (coord.IsUnknown)
+            {
+                coord = watcher.Position.Location;
+            }
+            Console.WriteLine("Location Found");
+
+            double[] location = {coord.Latitude, coord.Longitude};
+            return location;
+
+        }
+    
+
+        /// <summary>
+        /// Main watcher method for use in exporting as a class library function that can be called from Java
+        /// </summary>
+        public static void StartWatcher()
         {
 
             // The watcher holds the functionality for picking up BLE advertisements and their payload data 
