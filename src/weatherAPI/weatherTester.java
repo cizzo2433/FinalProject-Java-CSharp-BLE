@@ -6,7 +6,7 @@ package weatherAPI;
  */
 public class weatherTester {
     public static void main(String[] args) {
-        double[] location = Geocoder.geocode("17551");
+        double[] location = Geocoder.geocode("19312");
         Weather.getWeather(location[0], location[1]);
 
         System.out.printf("Current weatherAPI.Weather:\n Temperature: %.2f\n Condition: %s\n%n",

@@ -1,3 +1,4 @@
+import com.javonet.Javonet;
 import com.javonet.JavonetException;
 import com.javonet.api.NObject;
 
@@ -7,10 +8,10 @@ import com.javonet.api.NObject;
 public class JavaWatcher extends NObject {
 
     public JavaWatcher() throws JavonetException {
-        super("MyWatcher");
+        super("Program");
     }
 
-    public void run() throws JavonetException {
-        this.invoke("Run");
+    public boolean checkForBeacon() throws JavonetException {
+       return this.invoke("CheckForBlueCharm");
     }
 }

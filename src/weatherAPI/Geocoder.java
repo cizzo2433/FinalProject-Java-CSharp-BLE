@@ -13,10 +13,10 @@ import java.net.URLEncoder;
  */
 public class Geocoder {
 
-    private static double lat;
-    private static double lon;
+    protected static double lat;
+    protected static double lon;
 
-    protected static double[] geocode (String location) {
+    public static double[] geocode(String location) {
         try {
             URL url = new URL("https://nominatim.openstreetmap.org/search?format=json&q=" + URLEncoder.encode(location, "UTF-8"));
             HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
