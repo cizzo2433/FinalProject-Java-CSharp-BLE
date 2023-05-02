@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Javonet-1.5.155">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/.idea/libraries/Javonet-1.5.155.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ref/libraries/Javonet-1.5.155.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/.idea/libraries/Javonet-1.5.155.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ref/libraries/Javonet-1.5.155.jar!/" />
     </SOURCES>
   </library>
 </component>

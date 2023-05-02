@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ee89cf87-9dee-447e-ac88-57ffb9ab1984" name="Changes" comment="rework">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ref/csharp/QuickBlueToothLE.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ref/csharp/QuickBlueToothLE.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BeaconMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BeaconMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JavaWatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaWatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/Activity_Wheel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/Activity_Wheel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/weatherAPI/Geocoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/weatherAPI/Geocoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/weatherAPI/Weather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/weatherAPI/Weather.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Ojv4IzHCa6TG9762YC0NrDdNzY" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/izzoc/Desktop/JavonetTest",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\izzoc\Desktop\FinalProjectCIS111B-Java-CSharp\FinalProjectCIS111B\ref" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="helpers" />
+      <recent name="tests" />
+      <recent name="weatherAPI" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task id="LOCAL-00001" summary="added ref directory">
+      <created>1682011812623</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1682011812623</updated>
+    </task>
+    <task id="LOCAL-00002" summary="created weatherAPI package">
+      <created>1682012243979</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1682012243979</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added CombinedTest, made some edits to Activity_Wheel to return Strings for testing">
+      <created>1682044615543</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1682044615543</updated>
+    </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ee89cf87-9dee-447e-ac88-57ffb9ab1984" name="Changes" comment="added CombinedTest, made some edits to Activity_Wheel to return Strings for testing" />
+      <created>1682086615143</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1682086615143</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added CombinedTest, made some edits to Activity_Wheel to return Strings for testing">
+      <created>1682088086094</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1682088086094</updated>
+    </task>
+    <task id="LOCAL-00005" summary="rework">
+      <created>1682531806556</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1682531806556</updated>
+    </task>
+    <task id="LOCAL-00006" summary="rework">
+      <created>1682543065657</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1682543065657</updated>
+    </task>
+    <task id="LOCAL-00007" summary="rework">
+      <created>1682543204310</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1682543204310</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Java" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added ref directory" />
+    <MESSAGE value="created weatherAPI package" />
+    <MESSAGE value="added CombinedTest, made some edits to Activity_Wheel to return Strings for testing" />
+    <MESSAGE value="rework" />
+    <option name="LAST_COMMIT_MESSAGE" value="rework" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="6" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/weatherAPI/weatherTester.java</url>
+          <line>8</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
