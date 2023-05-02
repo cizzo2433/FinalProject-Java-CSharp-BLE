@@ -65,6 +65,8 @@ public class Activity_Wheel {
 
     // Consolidated everything below into the 2 methods above
 
+
+
     public static String pickActivity(String weather) {
 
         //variable "dice" acts as the randomizer depending on the int (number) given (shown later on)

@@ -20,7 +20,7 @@ public class Weather {
     private static final String API_ENDPOINT = "https://api.openweathermap.org/data/3.0/onecall?lat=%s&lon=%s&exclude=minutely,hourly,daily,alerts&appid=%s&units=imperial";
 
     /**
-     * Overridden method to accept a String location and call Geocoder directly
+     * Overloaded method to accept a String location and call Geocoder directly
      * @param location
      */
     public static void getWeather(String location) {

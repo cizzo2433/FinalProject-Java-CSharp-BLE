@@ -8,10 +8,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Activity_Wheel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/Activity_Wheel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CombinedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/CombinedTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ref/csharp/QuickBlueToothLE.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ref/csharp/QuickBlueToothLE.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BeaconMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BeaconMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JavaWatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaWatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/Activity_Wheel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/Activity_Wheel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/weatherAPI/Geocoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/weatherAPI/Geocoder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/weatherAPI/Weather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/weatherAPI/Weather.java" afterDir="false" />
     </list>
@@ -43,7 +44,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/izzoc/Desktop/FinalProjectCIS111B-Java-CSharp/FinalProjectCIS111B",
+    "last_opened_file_path": "C:/Users/izzoc/Desktop/JavonetTest",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
@@ -103,7 +104,21 @@
       <option name="project" value="LOCAL" />
       <updated>1682531806556</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="rework">
+      <created>1682543065657</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1682543065657</updated>
+    </task>
+    <task id="LOCAL-00007" summary="rework">
+      <created>1682543204310</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1682543204310</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -147,11 +162,6 @@
           <url>file://$PROJECT_DIR$/src/weatherAPI/weatherTester.java</url>
           <line>8</line>
           <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/helpers/Activity_Wheel.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

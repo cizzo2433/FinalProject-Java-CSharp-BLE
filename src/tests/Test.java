@@ -1,8 +1,6 @@
 package tests;
 
-import com.javonet.Javonet;
-import com.javonet.JavonetException;
-import com.javonet.JavonetFramework;
+import com.javonet.*;
 import helpers.Constants;
 import helpers.GoogleTranslate;
 import helpers.SynthesizerV2;
@@ -22,6 +20,13 @@ import java.io.IOException;
  */
 public class Test {
     public static void main(String[] args) throws JavonetException, IOException, ParseException {
+
+        Javonet.addActivationStateListener(new JavonetActivationStateListener() {
+            @Override
+            public void activationStateUpdated(JavonetActivationState arg0, String arg1) {
+                System.out.println("Notification Received: "+arg0.name()+" : " +arg1);
+            }
+        });
 
         // This is needed once at the beginning of the program to translate the C# library
         // Not needed for any consecutive calls to C# functions
