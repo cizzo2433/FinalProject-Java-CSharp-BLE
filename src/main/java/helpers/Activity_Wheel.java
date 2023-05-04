@@ -5,6 +5,7 @@ import com.theokanning.openai.completion.chat.ChatCompletionRequest;
 import com.theokanning.openai.completion.chat.ChatMessage;
 import com.theokanning.openai.completion.chat.ChatMessageRole;
 import com.theokanning.openai.service.OpenAiService;
+import weatherAPI.Geocoder;
 
 import java.io.*;
 import java.util.*;
@@ -13,7 +14,7 @@ public class Activity_Wheel {
 
     // Activation for OpenAI API
     private static final OpenAiService SERVICE
-            = new OpenAiService("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");
+            = new OpenAiService("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");
 
     /**
      * Returns a String message containing an activity that is randomly selected from an ArrayList
@@ -60,11 +61,14 @@ public class Activity_Wheel {
      * @param weather the weather conditions
      * @return an activity suggestion as a String
      */
-    public static String generateActivity(double temperature, String weather) {
+    public static String generateActivity(double temperature, String weather, double lat, double lon) {
 
         // Request to send to the API. So far this has given the best results but can be edited
-        String request = String.format("The temperature is %.2f degrees and conditions are %s. What is one" +
-                "activity I can do today? Give only 1 suggestion.", temperature, weather);
+        String request = String.format("The temperature is %.2f degrees and conditions are %s. What is one " +
+                "activity I can do today near the coordinates %f , %f ? Return your answer in the format \"An activity" +
+                "you can do in X is Y\", where X is the name of my current city name and Y is your suggested activity." +
+                "Then justify in one sentence why this would be a good activity to do.",
+                temperature, weather, lat, lon);
 
         // Creates the actual query to be sent, setting the role of the AI to assistant for response formatting
         // (other options are user and system)
@@ -76,7 +80,7 @@ public class Activity_Wheel {
         ChatCompletionRequest chatCompletionRequest = ChatCompletionRequest
                 .builder()
                 .model("gpt-3.5-turbo")
-                .temperature(1.0)       // edit this to change the randomness of the response (0.0 least, 2.0 most)
+                .temperature(1.5)       // edit this to change the randomness of the response (0.0 least, 2.0 most)
                 .messages(messages)
                 .n(1)
                 .build();

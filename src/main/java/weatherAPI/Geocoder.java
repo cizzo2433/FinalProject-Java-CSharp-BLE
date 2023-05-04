@@ -16,8 +16,8 @@ import java.net.URLEncoder;
  */
 public final class Geocoder {
 
-    static double lat;
-    static double lon;
+    public static double lat;
+    public static double lon;
     private static final GeoWatcher geoWatcher;
 
     static {

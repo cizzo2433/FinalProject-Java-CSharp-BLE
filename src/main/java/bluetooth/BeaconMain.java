@@ -63,7 +63,7 @@ public class BeaconMain extends Activity_Wheel {
 
                 String message = "The current temperature is " + Weather.currentTemp +
                         " degrees, " + formatMessage(Weather.currentCondition);
-                String activity = generateActivity(Weather.currentTemp, Weather.currentCondition);
+                String activity = generateActivity(Weather.currentTemp, Weather.currentCondition, Geocoder.lat, Geocoder.lon);
 
                 // Better way to have messages read one after the other without using Thread.sleep()
                 // since the time between messages can vary
