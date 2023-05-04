@@ -12,8 +12,8 @@ import java.util.*;
 public class Activity_Wheel {
 
     // Activation for OpenAI API
-    private static final OpenAiService SERVICE
-            = new OpenAiService("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");
+    private final OpenAiService SERVICE
+            = new OpenAiService("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");
 
     /**
      * Returns a String message containing an activity that is randomly selected from an ArrayList
@@ -23,7 +23,7 @@ public class Activity_Wheel {
      * @return a String message
      * @throws FileNotFoundException
      */
-    public static String generateActivity(String weather) throws IOException {
+    protected String generateActivity(String weather) throws IOException {
         
         Random dice = new Random();
         ArrayList<String> activities = null;
@@ -60,16 +60,15 @@ public class Activity_Wheel {
      * @param weather the weather conditions
      * @return an activity suggestion as a String
      */
-    public static String generateActivity(double temperature, String weather) {
+    protected String generateActivity(double temperature, String weather) {
 
         // Request to send to the API. So far this has given the best results but can be edited
         String request = String.format("The temperature is %.2f degrees and conditions are %s. What is one" +
                 "activity I can do today? Give only 1 suggestion.", temperature, weather);
 
-        // Creates the actual query to be sent, setting the role of the AI to assistant for response formatting
-        // (other options are user and system)
+        // Creates the actual query to be sent
         List<ChatMessage> messages = new ArrayList<>();
-        ChatMessage systemMessage = new ChatMessage(ChatMessageRole.ASSISTANT.value(), request);
+        ChatMessage systemMessage = new ChatMessage(ChatMessageRole.USER.value(), request);
         messages.add(systemMessage);
 
         // Parameters for the AI
@@ -100,7 +99,7 @@ public class Activity_Wheel {
      * @return an ArrayList containing different activities
      * @throws FileNotFoundException
      */
-    private static ArrayList<String> generateList(File file) throws FileNotFoundException {
+    private ArrayList<String> generateList(File file) throws FileNotFoundException {
         Scanner fileReader = new Scanner(file);
         ArrayList<String> activities = new ArrayList<>();
 
@@ -117,7 +116,7 @@ public class Activity_Wheel {
      * @return an ArrayList containing different activities
      * @throws IOException
      */
-    private static ArrayList<String> generateList(InputStream in) throws IOException {
+    private ArrayList<String> generateList(InputStream in) throws IOException {
         Scanner fileReader = new Scanner(in);
         ArrayList<String> activities = new ArrayList<>();
 
@@ -127,10 +126,4 @@ public class Activity_Wheel {
         in.close();
         return activities;
     }
-
-
-
-
-
-    // Consolidated everything below into the 2 methods above
 }

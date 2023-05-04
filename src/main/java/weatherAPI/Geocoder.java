@@ -3,7 +3,6 @@ package weatherAPI;
 import com.google.gson.Gson;
 import com.javonet.JavonetException;
 import com.javonet.api.NObject;
-
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -16,8 +15,8 @@ import java.net.URLEncoder;
  */
 public final class Geocoder {
 
-    static double lat;
-    static double lon;
+    protected static double lat;
+    protected static double lon;
     private static final GeoWatcher geoWatcher;
 
     static {

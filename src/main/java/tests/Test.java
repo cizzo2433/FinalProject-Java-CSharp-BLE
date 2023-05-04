@@ -2,8 +2,8 @@ package tests;
 
 import com.javonet.*;
 import helpers.Constants;
-import helpers.GoogleTranslate;
-import helpers.SynthesizerV2;
+import audio.GoogleTranslate;
+import audio.SynthesizerV2;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.advanced.AdvancedPlayer;
 import org.json.simple.parser.ParseException;
