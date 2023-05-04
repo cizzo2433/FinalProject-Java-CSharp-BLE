@@ -22,7 +22,7 @@ public class Roxanne extends AudioHandler {
     private String activityMessage;
     private double aiTemperature;
     private final OpenAiService SERVICE
-            = new OpenAiService("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");
+            = new OpenAiService("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");
     private final List<ChatMessage> messages = new ArrayList<>();
 
     /**
@@ -154,6 +154,12 @@ public class Roxanne extends AudioHandler {
     protected String buildResponse(String query) {
 
         if (!query.equals("Timed out")) {
+
+            query += ". Remember to speak like Shakespeare.";
+
+            // I was wrong and the message role should actually be user if it is something we are asking the AI
+            // the messages it creates have the role of assistant, and it uses the running list
+            // of both messages to reference previous parts of the conversation
             ChatMessage userMessage = new ChatMessage(ChatMessageRole.USER.value(), query);
             messages.add(userMessage);
 

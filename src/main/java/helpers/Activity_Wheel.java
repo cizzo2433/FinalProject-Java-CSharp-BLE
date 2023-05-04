@@ -63,8 +63,10 @@ public class Activity_Wheel {
     protected String generateActivity(double temperature, String weather, Roxanne roxanne) {
 
         // Request to send to the API. So far this has given the best results but can be edited
-        String request = String.format("The temperature is %.2f degrees and conditions are %s. What is one" +
-                "activity I can do today? Give only 1 suggestion.", temperature, weather);
+        String request = String.format("The temperature is %.2f degrees and conditions are %s. What is one " +
+                "activity I can do today near my current coordinates? Return your answer in the format \"An activity " +
+                "you can do in X is Y\", where X is the name of the closest city to my coordinates and Y is your suggested activity. " +
+                "Then justify in one sentence why this would be a good activity to do.", temperature, weather);
 
         return roxanne.buildResponse(request);
     }
