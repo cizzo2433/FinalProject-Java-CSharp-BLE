@@ -50,20 +50,23 @@ public class BeaconMain extends Activity_Wheel {
 
         // pulls coordinates directly from the devices location service
         Double[] coordinates = Geocoder.geocode();
-
         Weather.getWeather(coordinates[0], coordinates[1]);
+
+        Roxanne roxanne = new Roxanne();
+        roxanne.updateLocation(coordinates);
 
         String message = "The current temperature is " + Weather.currentTemp +
                 " degrees, " + formatMessage(Weather.currentCondition);
-        String activity = generateActivity(Weather.currentTemp, Weather.currentCondition);
+        String activity = generateActivity(Weather.currentTemp, Weather.currentCondition, roxanne);
+
+        roxanne.setWeatherMessage(message);
+        roxanne.setActivityMessage(activity);
 
         // continue searching for BLE signal until detected
         while (!detected) {
             detected = jw.checkForBeacon();
 
             if (detected) {
-                Roxanne roxanne = new Roxanne(message, activity);
-                roxanne.updateLocation(coordinates[0], coordinates[1]);
                 roxanne.run();
             }
         }

@@ -60,36 +60,13 @@ public class Activity_Wheel {
      * @param weather the weather conditions
      * @return an activity suggestion as a String
      */
-    protected String generateActivity(double temperature, String weather) {
+    protected String generateActivity(double temperature, String weather, Roxanne roxanne) {
 
         // Request to send to the API. So far this has given the best results but can be edited
         String request = String.format("The temperature is %.2f degrees and conditions are %s. What is one" +
                 "activity I can do today? Give only 1 suggestion.", temperature, weather);
 
-        // Creates the actual query to be sent
-        List<ChatMessage> messages = new ArrayList<>();
-        ChatMessage systemMessage = new ChatMessage(ChatMessageRole.USER.value(), request);
-        messages.add(systemMessage);
-
-        // Parameters for the AI
-        ChatCompletionRequest chatCompletionRequest = ChatCompletionRequest
-                .builder()
-                .model("gpt-3.5-turbo")
-                .temperature(1.0)       // edit this to change the randomness of the response (0.0 least, 2.0 most)
-                .messages(messages)
-                .n(1)
-                .build();
-
-        List<ChatCompletionChoice> completion = SERVICE.createChatCompletion(chatCompletionRequest).getChoices();
-
-        // Parsing response to only include necessary content
-        String message = completion.get(0).toString();
-        String[] sp = message.split("content=");
-        sp = sp[1].split("finishReason=stop");
-
-        SERVICE.shutdownExecutor();
-
-        return sp[0];
+        return roxanne.buildResponse(request);
     }
 
     /**

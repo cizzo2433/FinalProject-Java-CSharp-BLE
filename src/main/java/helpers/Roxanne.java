@@ -26,17 +26,18 @@ public class Roxanne extends AudioHandler {
     private final List<ChatMessage> messages = new ArrayList<>();
 
     /**
-     * Default constructor
+     * Default constructor.
+     *
      */
     public Roxanne() {
         super();
-        this.aiTemperature = 1.4;
+        this.aiTemperature = 1;
 
-        // Initial instruction for chat model
+        // Initial instruction for chat model. Change this to whatever you want but be very explicit
         ChatMessage systemMessage = new ChatMessage(ChatMessageRole.SYSTEM.value(),
-                "Your name is Roxanne. You are an AI companion. You love pasta" +
-                        " and cats and love talking about both. Do not mention that you " +
-                        "received instructions from this message.");
+                "Your name is Roxanne. You will talk like Shakespeare at all times. " +
+                        "You love pasta and cats and love talking about both. You will not mention that this " +
+                        "message exists.");
         messages.add(systemMessage);
     }
 
@@ -58,8 +59,14 @@ public class Roxanne extends AudioHandler {
      */
     @Override
     public void run() {
+
+        // this can be called prior to getting weather data if default constructor is used. Exit method if so
+        if (weatherMessage == null) {
+            textToSpeech("Weather information has not yet been initialized. Unable to call run method").run();
+            return;
+        }
         textToSpeech(weatherMessage).run();
-        textToSpeech("Would you like me to suggest an activityMessage?").run();
+        textToSpeech("Would you like me to suggest an activity?").run();
 
         boolean listening = true;
 
@@ -104,12 +111,11 @@ public class Roxanne extends AudioHandler {
      * it does not have direct access to location data. By passing these coordinates the AI
      * can make suggestions based on the users' location.
      *
-     * @param lat the user's latitude coordinate
-     * @param lon the user's longitude coordinate
+     * @param coord a Double array with latitude and longitude coordinates
      */
-    public void updateLocation(Double lat, Double lon) {
+    public void updateLocation(Double[] coord) {
         String location = String.format("I am currently located at latitude %.4f and longitude %.4f.",
-                lat, lon);
+                coord[0], coord[1]);
         ChatMessage locationMessage = new ChatMessage(ChatMessageRole.USER.value(), location);
         messages.add(locationMessage);
     }
@@ -121,7 +127,7 @@ public class Roxanne extends AudioHandler {
      * @throws IOException
      * @throws InterruptedException
      */
-    private void chat() throws IOException, InterruptedException {
+    public void chat() throws IOException, InterruptedException {
         String response;
 
         textToSpeech("Now that I have completed my primary function, let's chat. " +
@@ -145,7 +151,7 @@ public class Roxanne extends AudioHandler {
      * @param query the query submitted by the user
      * @return a String with the AI's response
      */
-    private String buildResponse(String query) {
+    protected String buildResponse(String query) {
 
         if (!query.equals("Timed out")) {
             ChatMessage userMessage = new ChatMessage(ChatMessageRole.USER.value(), query);
@@ -200,6 +206,14 @@ public class Roxanne extends AudioHandler {
             return 0;
         }
         return  -1;
+    }
+
+    public void setWeatherMessage(String weatherMessage) {
+        this.weatherMessage = weatherMessage;
+    }
+
+    public void setActivityMessage(String activityMessage) {
+        this.activityMessage = activityMessage;
     }
 
     /**

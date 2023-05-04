@@ -54,13 +54,15 @@ public abstract class AudioHandler extends SynthesizerV2 implements Runnable {
      * @throws InterruptedException
      */
     protected String speechToText() throws IOException, InterruptedException {
-        System.out.println("Listening");
+
 
         // Start the Python script and wait for it to complete before continuing
         Process process = new ProcessBuilder("python", "src/main/python/speech_to_text.py")
                 .redirectErrorStream(true)
                 .start();
+        System.out.println("Listening");
         process.waitFor();
+
 
         // Will read values from script
         BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
