@@ -3,26 +3,21 @@ package bluetooth;
 import com.javonet.Javonet;
 import com.javonet.JavonetException;
 import com.javonet.JavonetFramework;
+import com.javonet.api.NObject;
 import helpers.*;
-import javazoom.jl.decoder.JavaLayerException;
-import javazoom.jl.player.advanced.AdvancedPlayer;
 import weatherAPI.Geocoder;
 import weatherAPI.Weather;
-import javax.sound.sampled.*;
 import java.io.*;
-import java.net.URL;
-import java.util.concurrent.CountDownLatch;
 
 
 /**
  * Class that handles the combined functions of determining the users' location and determining the temperature
- * and weather at that location. When a certain bluetooth signal is detected will use text to speech to say
- * the weather data and suggest an activity based on that data.
+ * and weather at that location. When a certain bluetooth signal is detected will use text to speech and GPT-3.5
+ * language model to generate and activity based on the weather.
  */
-public class BeaconMain extends Activity_Wheel {
+public class BeaconMain {
 
-    private final JavaWatcher jw; // object that handles detection of BLE signals
-
+    private final JavaWatcher jw;
 
     /**
      * Constructor, calls to Javonet API to initialize the use of C# class library
@@ -34,33 +29,30 @@ public class BeaconMain extends Activity_Wheel {
             Javonet.activate(Constants.email, Constants.APIkey, JavonetFramework.v45);
         }
         Javonet.addReference(Constants.filePath, Constants.bArr);
-        this.jw = new JavaWatcher();
+        jw = new JavaWatcher();
     }
 
 
     /**
      * Listens for a specified bluetooth signal, and when detected, speaks a message with the temperature,
-     * weather conditions, and a suggested activity for the day
+     * weather conditions, and will suggest an activity for the day when prompted. Will also allow chat with
+     * AI language model.
      *
      * @throws JavonetException
      * @throws FileNotFoundException
      */
-    public void start() throws JavonetException, IOException, InterruptedException {
+    public void start() throws JavonetException, IOException {
         boolean detected = false; // True once beacon signal detected
 
         // pulls coordinates directly from the devices location service
         Double[] coordinates = Geocoder.geocode();
         Weather.getWeather(coordinates[0], coordinates[1]);
 
-        Roxanne roxanne = new Roxanne();
-        roxanne.updateLocation(coordinates);
+        Roxanne roxanne = new Roxanne(coordinates);
 
-        String message = "The current temperature is " + Weather.currentTemp +
+        String weather = "The current temperature is " + Weather.currentTemp +
                 " degrees, " + formatMessage(Weather.currentCondition);
-        String activity = generateActivity(Weather.currentTemp, Weather.currentCondition, roxanne);
-
-        roxanne.setWeatherMessage(message);
-        roxanne.setActivityMessage(activity);
+        roxanne.generateActivity(weather);
 
         // continue searching for BLE signal until detected
         while (!detected) {
@@ -100,4 +92,28 @@ public class BeaconMain extends Activity_Wheel {
         return null;
     }
 
+    /**
+     * BLE watcher class using C# wrapper to access the .NET BLE library
+     */
+    private static final class JavaWatcher extends NObject {
+
+        /**
+         * Constructor, with call to C# super class
+         *
+         * @throws JavonetException
+         */
+        private JavaWatcher() throws JavonetException {
+            super("Program");
+        }
+
+        /**
+         * Searches for beacon signal based on the assigned beacon name
+         *
+         * @return true if signal found, false otherwise
+         * @throws JavonetException
+         */
+        private boolean checkForBeacon() throws JavonetException {
+            return this.invoke("CheckForBlueCharm");
+        }
+    }
 }

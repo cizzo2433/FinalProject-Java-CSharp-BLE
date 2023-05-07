@@ -1,6 +1,5 @@
 package audio;
 
-import bluetooth.BeaconMain;
 import helpers.Constants;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -17,10 +16,16 @@ import java.util.concurrent.CountDownLatch;
  */
 public abstract class AudioHandler extends SynthesizerV2 implements Runnable {
 
+    /**
+     * Constructor
+     */
     public AudioHandler() {
         super(Constants.googleAPIKey);
     }
 
+    /**
+     * Will need to be overriden in subclass
+     */
     @Override
     public abstract void run();
 
@@ -47,7 +52,7 @@ public abstract class AudioHandler extends SynthesizerV2 implements Runnable {
 
     /**
      * Calls Python script to convert speech to text. Returns a String of the spoken words,
-     * or what the program interprets was said.
+     * or what the API interprets was said.
      *
      * @return a String of the words spoken by the user
      * @throws IOException
@@ -55,14 +60,12 @@ public abstract class AudioHandler extends SynthesizerV2 implements Runnable {
      */
     protected String speechToText() throws IOException, InterruptedException {
 
-
         // Start the Python script and wait for it to complete before continuing
         Process process = new ProcessBuilder("python", "src/main/python/speech_to_text.py")
                 .redirectErrorStream(true)
                 .start();
         System.out.println("Listening");
         process.waitFor();
-
 
         // Will read values from script
         BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -77,7 +80,7 @@ public abstract class AudioHandler extends SynthesizerV2 implements Runnable {
     }
 
     /**
-     * Plays a song from a .wav file. May add option to have user select the song.
+     * Plays a song from a .wav file. User can end song by saying "stop".
      *
      * @throws UnsupportedAudioFileException
      * @throws IOException
@@ -87,12 +90,13 @@ public abstract class AudioHandler extends SynthesizerV2 implements Runnable {
     protected void playNiceSong() throws UnsupportedAudioFileException, IOException,
             LineUnavailableException, InterruptedException {
 
-        InputStream song = BeaconMain.class.getClassLoader().getResourceAsStream("nicesong.wav");
-        CountDownLatch latch = new CountDownLatch(1);
+        InputStream song = AudioHandler.class.getClassLoader().getResourceAsStream("nicesong.wav");
+        CountDownLatch latch = new CountDownLatch(1); // will need to call countDown 1 time to continue main thread
 
         try (AudioInputStream ais = AudioSystem.getAudioInputStream(song)) {
             Clip clip = AudioSystem.getClip();
 
+            // if the clip is stopped resume the main thread
             clip.addLineListener(l -> {
                 if (l.getType() == LineEvent.Type.STOP) {
                     latch.countDown();
@@ -100,7 +104,15 @@ public abstract class AudioHandler extends SynthesizerV2 implements Runnable {
             });
             clip.open(ais);
             clip.start();
+
+            // check if user says to stop the song
+            while (clip.isOpen()){
+                String s = speechToText();
+                if (s.equalsIgnoreCase("stop") || s.contains("stop")) {
+                    clip.close();
+                }
+            }
         }
-        latch.await();
+        latch.await(); // pauses current thread until countDown is called
     }
 }

@@ -1,4 +1,4 @@
-package audio;
+package helpers;
 
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -9,7 +9,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -48,9 +48,8 @@ public final class GoogleTranslate { //Class marked as final since all methods a
 	 * @param text The text that you wish to generate
 	 * @return The generated URL as a string.
 	 */
-	private static String generateURL(String sourceLanguage , String targetLanguage ,
-									  String text) throws UnsupportedEncodingException {
-		String encoded = URLEncoder.encode(text, "UTF-8"); //Encode
+	private static String generateURL(String sourceLanguage , String targetLanguage , String text) {
+		String encoded = URLEncoder.encode(text, StandardCharsets.UTF_8); //Encode
 		return GOOGLE_TRANSLATE_URL +
 				"?client=webapp" + //The client parameter
 				"&hl=en" + //The language of the UI?
@@ -90,8 +89,7 @@ public final class GoogleTranslate { //Class marked as final since all methods a
 	}
 	
 	/**
-	 * Automatically translates text to a system's default language according to its locale Useful for creating international applications as you can
-	 * translate UI strings
+	 * Automatically translates text to a system's default language according to its locale
 	 * 
 	 * @see GoogleTranslate#translate(String, String, String)
 	 * @param text The text you want to translate
@@ -167,7 +165,7 @@ public final class GoogleTranslate { //Class marked as final since all methods a
 				"(Windows NT 6.1; WOW64; rv:2.0) Gecko/20100101 Firefox/4.0");
 
 		// Gets data and converts to String
-		Reader r = new java.io.InputStreamReader(urlConn.getInputStream(), Charset.forName("UTF-8"));
+		Reader r = new java.io.InputStreamReader(urlConn.getInputStream(), StandardCharsets.UTF_8);
 		StringBuilder buf = new StringBuilder();
 		while (true) {//Reads String from buffer
 			int ch = r.read();

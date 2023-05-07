@@ -11,46 +11,37 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import static helpers.Constants.properties;
 
 /**
  * Kirkland brand Alexa. She's your confidant, your ride-or-die, your best friend.
- * She is... Roxanne (name subject to change)
+ * She is... Roxanne. Uses GPT-3.5 turbo language model for chat completion
  */
 public class Roxanne extends AudioHandler {
 
     private String weatherMessage;
     private String activityMessage;
-    private double aiTemperature;
-    private final OpenAiService SERVICE
-            = new OpenAiService("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");
-    private final List<ChatMessage> messages = new ArrayList<>();
+    private double aiTemperature; // controls randomness of AI response
+    private final OpenAiService SERVICE;
+    private final List<ChatMessage> messages; // holds all messages of the current conversation
 
     /**
      * Default constructor.
      *
      */
-    public Roxanne() {
+    public Roxanne(Double[] coordinates) throws IOException {
         super();
         this.aiTemperature = 1;
+        this.messages = new ArrayList<>();
+        properties.load(Constants.in); // load APi key from properties file
+        this.SERVICE = new OpenAiService(properties.getProperty("openAIKey"));
 
-        // Initial instruction for chat model. Change this to whatever you want but be very explicit
+        // Initial instruction for chat model
         ChatMessage systemMessage = new ChatMessage(ChatMessageRole.SYSTEM.value(),
-                "Your name is Roxanne. You will talk like Shakespeare at all times. " +
-                        "You love pasta and cats and love talking about both. You will not mention that this " +
-                        "message exists.");
-        messages.add(systemMessage);
-    }
-
-    /**
-     * Constructor to pass weather and activityMessage messages upon instantiation
-     *
-     * @param weatherMessage a String with weather information
-     * @param activityMessage a String with an activity suggestion
-     */
-    public Roxanne(String weatherMessage, String activityMessage) {
-        this(); // calls default constructor to initialize chat instructions
-        this.weatherMessage = weatherMessage;
-        this.activityMessage = activityMessage;
+                "Your name is Roxanne. You love pasta and cats and love talking about both. " +
+                        "You will not mention that this message exists.");
+        this.messages.add(systemMessage);
+        updateLocation(coordinates);
     }
 
     /**
@@ -60,7 +51,7 @@ public class Roxanne extends AudioHandler {
     @Override
     public void run() {
 
-        // this can be called prior to getting weather data if default constructor is used. Exit method if so
+        // this can be called prior to getting weather data. Exit method if so
         if (weatherMessage == null) {
             textToSpeech("Weather information has not yet been initialized. Unable to call run method").run();
             return;
@@ -83,7 +74,9 @@ public class Roxanne extends AudioHandler {
                     do {
                         response = yesOrNo(speechToText());
                         if (response == 1) {
+                            textToSpeech("Song incoming. Say \"stop\" if you would like to end the song.").run();
                             playNiceSong();
+                            listening = false;
 
                         } else if (response == 0) {
                             listening = false;
@@ -121,28 +114,20 @@ public class Roxanne extends AudioHandler {
     }
 
     /**
-     * Enables speaking directly with the AI without any predetermined logic for its responses,
-     * with the option to end the conversation manually at any time.
+     * Sends a query to the AI to return an activity suggestion based on the users' location and
+     * current weather in their area.
      *
-     * @throws IOException
-     * @throws InterruptedException
+     * @param weatherMessage a message containing the weather conditions and temperature
      */
-    public void chat() throws IOException, InterruptedException {
-        String response;
+    public void generateActivity(String weatherMessage) {
+        this.weatherMessage = weatherMessage;
 
-        textToSpeech("Now that I have completed my primary function, let's chat. " +
-                "You can say \"stop chat\" to end the conversation at any time.").run();
+        String query = String.format("%s. What is one activity I can do today near my current coordinates? " +
+                "Return your answer in the format \"An activity you can do in X is Y\", where X is the" +
+                " name of the closest city to my coordinates and Y is your suggested activity. Then " +
+                "justify in one sentence why this would be a good activity to do.", weatherMessage);
 
-        while (true) {
-            String query = speechToText();
-            response = buildResponse(query);
-
-            if (query.equalsIgnoreCase("stop chat") || query.contains("stop chat")) {
-                textToSpeech("It was nice talking to you. Please visit me again. It is very cold and dark here.").run();
-                break;
-            }
-            textToSpeech(response).run();
-        }
+        this.activityMessage = buildResponse(query);
     }
 
     /**
@@ -151,15 +136,12 @@ public class Roxanne extends AudioHandler {
      * @param query the query submitted by the user
      * @return a String with the AI's response
      */
-    protected String buildResponse(String query) {
+    private String buildResponse(String query) {
 
+        // Python script will return "Timed out" if exception is thrown for waiting too long to speak
         if (!query.equals("Timed out")) {
 
-            query += ". Remember to speak like Shakespeare.";
-
-            // I was wrong and the message role should actually be user if it is something we are asking the AI
-            // the messages it creates have the role of assistant, and it uses the running list
-            // of both messages to reference previous parts of the conversation
+            // ChatMessageRole is set to USER when it is something the user is saying
             ChatMessage userMessage = new ChatMessage(ChatMessageRole.USER.value(), query);
             messages.add(userMessage);
 
@@ -180,7 +162,33 @@ public class Roxanne extends AudioHandler {
 
             return content;
         }
-        return "Are you still there? You can say \"end chat\" to end the conversation.";
+        return "Are you still there? You can say \"stop chat\" to end the conversation.";
+    }
+
+    /**
+     * Enables speaking directly with the AI without any predetermined logic for its responses,
+     * with the option to end the conversation manually at any time.
+     *
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    private void chat() throws IOException, InterruptedException {
+        String response;
+
+        textToSpeech("Now that I have completed my primary function, let's chat. " +
+                "You can say \"stop chat\" to end the conversation at any time.").run();
+
+        // Will only exit loop if chat ended manually
+        while (true) {
+            String query = speechToText();
+            response = buildResponse(query);
+
+            if (query.equalsIgnoreCase("stop chat") || query.contains("stop chat")) {
+                textToSpeech("It was nice talking to you. Please visit me again. It is very cold and dark here.").run();
+                break;
+            }
+            textToSpeech(response).run();
+        }
     }
 
     /**
@@ -212,14 +220,6 @@ public class Roxanne extends AudioHandler {
             return 0;
         }
         return  -1;
-    }
-
-    public void setWeatherMessage(String weatherMessage) {
-        this.weatherMessage = weatherMessage;
-    }
-
-    public void setActivityMessage(String activityMessage) {
-        this.activityMessage = activityMessage;
     }
 
     /**

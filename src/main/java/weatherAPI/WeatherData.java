@@ -8,7 +8,6 @@ package weatherAPI;
 public class WeatherData {
     CurrentWeather current;
 
-
     static class CurrentWeather {
         double temp;
         Weather[] weather;

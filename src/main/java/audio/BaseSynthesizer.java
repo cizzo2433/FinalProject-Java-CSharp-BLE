@@ -1,5 +1,7 @@
 package audio;
 
+import helpers.GoogleTranslate;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.SequenceInputStream;
@@ -153,7 +155,7 @@ public abstract class BaseSynthesizer {
 	 * This class is a callable. A callable is like a runnable except that it can return data and throw exceptions.
 	 */
 	private class MP3DataFetcher implements Callable<InputStream> {
-		private String synthText;
+		private final String synthText;
 		
 		public MP3DataFetcher(String synthText) {
 			this.synthText = synthText;

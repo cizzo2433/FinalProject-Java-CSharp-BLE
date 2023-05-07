@@ -1,7 +1,6 @@
 package weatherAPI;
 
 import com.google.gson.Gson;
-
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -15,14 +14,17 @@ import java.net.URL;
 public class Weather {
     public static double currentTemp;          // Current temperature in ºF
     public static String currentCondition;     // Current weather condition
+
     // API Key for OpenWeatherMap OneCall 3.0 API
     private static final String API_KEY = "3a86deaa95c6eea2a6462d1d879afc68";
     // API Endpoint
-    private static final String API_ENDPOINT = "https://api.openweathermap.org/data/3.0/onecall?lat=%s&lon=%s&exclude=minutely,hourly,daily,alerts&appid=%s&units=imperial";
+    private static final String API_ENDPOINT = "https://api.openweathermap.org/" +
+            "data/3.0/onecall?lat=%s&lon=%s&exclude=minutely,hourly,daily,alerts&appid=%s&units=imperial";
 
     /**
      * Overloaded method to accept a String location and call Geocoder directly
-     * @param location
+     *
+     * @param location a location as a city, state, or zip code
      */
     public static void getWeather(String location) {
         Geocoder.geocode(location);

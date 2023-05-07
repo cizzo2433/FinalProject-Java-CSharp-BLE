@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Utilizes the OpenStreetMap Nominatim API to convert a given location to
@@ -15,8 +16,8 @@ import java.net.URLEncoder;
  */
 public final class Geocoder {
 
-    protected static double lat;
-    protected static double lon;
+    static double lat;
+    static double lon;
     private static final GeoWatcher geoWatcher;
 
     static {
@@ -28,7 +29,7 @@ public final class Geocoder {
     }
 
     /**
-     * Constructor declared private to prevent instantiation
+     * Constructor, declared private to prevent instantiation
      */
     private Geocoder() {
     }
@@ -47,9 +48,17 @@ public final class Geocoder {
         return coordinates;
     }
 
+    /**
+     * Will take a city, state or zip code and return an array containing the latitude and longitude coordinates
+     * of that location.
+     *
+     * @param location the location as a city, state, or zip code
+     * @return a double array, index 0 being latitude and index 1 being longitude
+     */
     public static double[] geocode(String location) {
         try {
-            URL url = new URL("https://nominatim.openstreetmap.org/search?format=json&q=" + URLEncoder.encode(location, "UTF-8"));
+            URL url = new URL("https://nominatim.openstreetmap.org/search?format=json&q=" +
+                    URLEncoder.encode(location, StandardCharsets.UTF_8));
             HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
             BufferedReader geoReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
@@ -77,10 +86,8 @@ public final class Geocoder {
 
     /**
      * Nested class to access device location services using C# wrapper.
-     * Including within Geocoder as none of the methods that use Javonet can
-     * be invoked statically
      */
-    private static class GeoWatcher extends NObject {
+    private static final class GeoWatcher extends NObject {
 
         /**
          * Constructor, with call to C# super class
