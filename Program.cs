@@ -7,12 +7,7 @@ namespace BluetoothLEReceiver
 {
     class Program
     {
-        public static void Main(string[] args)
-        {
-
-            
-            
-        }
+       
 
         /// <summary>
         /// Method for testing, will show the status of finding current location, or if location services are disables 
