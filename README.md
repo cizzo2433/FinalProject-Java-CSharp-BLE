@@ -20,7 +20,7 @@ mvn install:install-file -Dfile="full path to jar file in project" -DgroupId=com
 
 Finally, in the resources folder of the project, create a file called application.properties and write one line with the format:
 
-OpenAIKey=""
+openAIKey=""
 
 Replacing the quoatation marks with your free API key from OpenAI, which can be obtained at https://platform.openai.com/account/api-keys
 This will prevent the API key from being deactived because the project is shared on GitHub. 
